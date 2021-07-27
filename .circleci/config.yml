@@ -1,0 +1,59 @@
+---
+version: 2.1
+
+jobs:
+  lint_with_node:
+    docker:
+      - image: circleci/node:14.17.1
+    working_directory: ~/app_lintwithnode
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-{{ .Environment.CACHE_VERSION }}-lint_with_node
+
+      - run:
+          name: npm module install
+          command: |
+            make setup_node_module
+      - save_cache:
+          key: cache-{{ .Environment.CACHE_VERSION }}-lint_with_node
+          paths:
+            - ./node_modules
+
+      - run:
+          name: markdownlint
+          command: |
+            make lint_markdown
+
+  build:
+    docker:
+      - image: circleci/python:3.9.5
+    working_directory: ~
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: deps-{{ checksum "poetry.lock" }}\
+            -{{ .Environment.CACHE_VERSION }}
+      - run:
+          name: Install dependencies
+          command: |
+            make -j $(nproc) dev_setup
+
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}\
+            -{{ .Environment.CACHE_VERSION }}
+          paths:
+            - ~/.cache/pypoetry/virtualenvs
+      - run:
+          name: Lint
+          command: |
+            poetry run make -j $(nproc) lint
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - lint_with_node
+      - build
