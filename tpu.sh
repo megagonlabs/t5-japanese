@@ -88,7 +88,7 @@ GIN_LR=${GIN_LR:-learning_rate_schedules/rsqrt_no_ramp_down.gin}
     fi
 
     python scripts/dist.py -t "${SPM}" -i "${OUT_DIR}" -o "${LOCAL_OUT_DIR}"
-    cd "${LOCAL_OUT_DIR}"
+    cd "${LOCAL_OUT_DIR}" || exit 1
     rm "t5.pt.${BASENAME}"
     ln -s pt "t5.pt.${BASENAME}"
     zip -r "t5.pt.${BASENAME}".zip "t5.pt.${BASENAME}"

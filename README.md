@@ -3,6 +3,7 @@
 
 [![CircleCI](https://circleci.com/gh/megagonlabs/t5-japanese/tree/master.svg?style=svg)](https://circleci.com/gh/megagonlabs/t5-japanese/tree/master)
 [![Typos](https://github.com/megagonlabs/t5-japanese/actions/workflows/typos.yml/badge.svg)](https://github.com/megagonlabs/t5-japanese/actions/workflows/typos.yml)
+[![Shellcheck](https://github.com/megagonlabs/t5-japanese/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/megagonlabs/t5-japanese/actions/workflows/shellcheck.yml)
 
 Codes to pre-train a T5 (Text-to-Text Transfer Transformer) model pre-trained on Japanese web texts.  
 The model is available at <https://huggingface.co/megagonlabs/t5-base-japanese-web>.
