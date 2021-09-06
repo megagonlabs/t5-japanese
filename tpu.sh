@@ -7,6 +7,7 @@ ZONE=${ZONE:?"undefined ZONE"}
 DATA_DIR=${DATA_DIR:?"undefined DATA_DIR"}
 TPU_TYPE=v3-8
 TASK=${TASK:?"undefined TASK"}
+CONFIG=${CONFIG:?"undefined CONFIG"}
 BATCH_SIZE=${BATCH_SIZE:-65536}
 TRAIN_STEPS=${TRAIN_STEPS:-1000000}
 if [ "$SPM" == "" ] || [ "$OUT_DIR" == "" ]; then
@@ -87,7 +88,7 @@ GIN_LR=${GIN_LR:-learning_rate_schedules/rsqrt_no_ramp_down.gin}
         gcloud compute tpus stop "$TPU" --zone "$ZONE"
     fi
 
-    python scripts/dist.py -t "${SPM}" -i "${OUT_DIR}" -o "${LOCAL_OUT_DIR}"
+    python scripts/dist.py -t "${SPM}" -i "${OUT_DIR}" -o "${LOCAL_OUT_DIR}" --config "${CONFIG}"
     cd "${LOCAL_OUT_DIR}" || exit 1
     rm "t5.pt.${BASENAME}"
     ln -s pt "t5.pt.${BASENAME}"

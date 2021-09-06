@@ -74,26 +74,19 @@ gsutil -u YOUR_PROJECT_NAME -m cp \
 With ``PRE=1``, it uses a [Preemptible TPU](https://cloud.google.com/tpu/docs/preemptible).
 
 ```bash
+cp config.example.json config.mc4_mywiki40b.json
+# Edit if needed
+# "vocab_size" was 8064 when 8k sentencepiece
+
 PROJECT=YOUR_PROJECT_NAME \
 ZONE=YOUR_TPU_ZONE \
 DATA_DIR=gs://YOUR_GSC_BUCKET/tfds \
 SPM=gs://YOUR_GSC_BUCKET/spm/spm.wiki40b-ja.32k.byte_fallback.forT5.model \
 OUT_DIR=gs://YOUR_GSC_BUCKET/out/mc4_mywiki40b \
 TASK=mc4_mywiki40b \
+CONFIG=config.mc4_mywiki40b.json
 PRE=1 \
     poetry run bash -x tpu.sh
 ```
 
 It needed 126 hours for 1M steps with TPU v3-8.
-
-## Convert
-
-```bash
-cp config.example.json config.mc4_mywiki40b.json
-# Set the proper values
-poetry run python3 ./scripts/dist.py \
-    -t gs://YOUR_GSC_BUCKET/spm/spm.wiki40b-ja.32k.byte_fallback.forT5.model \
-    -i gs://YOUR_GSC_BUCKET/out/mc4_mywiki40b \
-    --config config.mc4_mywiki40b.json \
-    -o t5.mc4_mywiki40b
-```
