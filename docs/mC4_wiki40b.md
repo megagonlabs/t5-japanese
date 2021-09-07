@@ -84,7 +84,7 @@ DATA_DIR=gs://YOUR_GSC_BUCKET/tfds \
 SPM=gs://YOUR_GSC_BUCKET/spm/spm.wiki40b-ja.32k.byte_fallback.forT5.model \
 OUT_DIR=gs://YOUR_GSC_BUCKET/out/mc4_mywiki40b \
 TASK=mc4_mywiki40b \
-CONFIG=config.mc4_mywiki40b.json
+CONFIG=config.mc4_mywiki40b.json \
 PRE=1 \
     poetry run bash -x tpu.sh
 ```
