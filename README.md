@@ -5,8 +5,11 @@
 [![Typos](https://github.com/megagonlabs/t5-japanese/actions/workflows/typos.yml/badge.svg)](https://github.com/megagonlabs/t5-japanese/actions/workflows/typos.yml)
 [![Shellcheck](https://github.com/megagonlabs/t5-japanese/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/megagonlabs/t5-japanese/actions/workflows/shellcheck.yml)
 
-Codes to pre-train a T5 (Text-to-Text Transfer Transformer) model pre-trained on Japanese web texts.  
-The model is available at <https://huggingface.co/megagonlabs/t5-base-japanese-web>.
+Codes to pre-train T5 (Text-to-Text Transfer Transformer) models pre-trained on Japanese web texts.  
+The following is a list of models that we have published.
+
+- [megagonlabs/t5-base-japanese-web (32k)](https://huggingface.co/megagonlabs/t5-base-japanese-web)
+- [megagonlabs/t5-base-japanese-web-8k (8k)](https://huggingface.co/megagonlabs/t5-base-japanese-web-8k)
 
 ## Documents
 
